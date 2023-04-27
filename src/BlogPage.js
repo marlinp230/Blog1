@@ -3,15 +3,15 @@ import { Link, Outlet } from "react-router-dom";
 import { blogdata } from "./blogdata";
 import { useNavigate, useParams } from "react-router-dom";
 
-function BlogPage(){
-  const [blogs, setBlogs] = React.useState(blogdata)
+function BlogPage({Blogs}){
+
   const navigate = useNavigate();
   const { slug } = useParams();
 
   const deletePost = (slug) => { 
 
-    setBlogs(blogs.filter(blog=> blog.slug !== slug))
-    console.log(blogs)
+    // setBlogs(blogs.filter(blog=> blog.slug !== slug))
+    // console.log(blogs)
     // HTMLFormControlsCollection      
     //     const blogIndex = blogdata.findIndex(post => post.slug === slug);
     //     console.log(blogIndex);
@@ -29,7 +29,7 @@ function BlogPage(){
             <Outlet />
 
           <ul>
-            {blogs.map(post => (
+            {Blogs.map(post => (
              <BlogLink key={post.slug} post={post} />
             ))}
           </ul>

@@ -5,7 +5,7 @@ import { blogdata } from "./blogdata";
 import { BlogPage } from "./BlogPage";
 
 
-function BlogPost() {
+function BlogPost({Blogs,setBlogs}) {
     
     //const [blogs, setBlogs] = React.useState(blogdata)
     const navigate = useNavigate();
@@ -15,22 +15,20 @@ function BlogPost() {
     const auth = useAuth();
 
     const blogpost = blogdata.find(post => post.slug === slug);
-    console.log(slug)
-    console.log(blogdata)
+    
     const canDelete = auth.user?.isAdmin || blogpost.author === auth.user?.username;
 
     const returnToBlog = () => {
         navigate('/blog');
     };
 
-    const onDelete = () => {
-        deletePost(blogpost.slug)
-        navigate('/blog');
-    }
+  
 
     
     const deleteee = (slug)=>{
-    console.log(slug)
+       
+        setBlogs(Blogs.filter(blog=> blog.slug !== slug))
+        navigate('/blog');
    }
     
     
